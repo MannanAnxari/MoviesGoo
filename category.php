@@ -17,17 +17,17 @@ $loop = $data[0]['data'];
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Category Results - Filmato</title>
-	<link rel="stylesheet" href="./css/bootstrap-reboot.min.css">
-	<link rel="stylesheet" href="./css/bootstrap-grid.min.css">
-	<link rel="stylesheet" href="./css/owl.carousel.min.css">
-	<link rel="stylesheet" href="./css/jquery.mCustomScrollbar.min.css">
-	<link rel="stylesheet" href="./css/nouislider.min.css">
-	<link rel="stylesheet" href="./css/ionicons.min.css">
-	<link rel="stylesheet" href="./css/plyr.css">
-	<link rel="stylesheet" href="./css/photoswipe.css">
-	<link rel="stylesheet" href="./css/default-skin.css">
-	<link rel="stylesheet" href="./css/main.css">
+	<title>Category Results - MoviesGoo</title>
+	<link rel="stylesheet" href="<?php echo $root_directory?>/css/bootstrap-reboot.min.css">
+	<link rel="stylesheet" href="<?php echo $root_directory?>/css/bootstrap-grid.min.css">
+	<link rel="stylesheet" href="<?php echo $root_directory?>/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="<?php echo $root_directory?>/css/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="<?php echo $root_directory?>/css/nouislider.min.css">
+	<link rel="stylesheet" href="<?php echo $root_directory?>/css/ionicons.min.css">
+	<link rel="stylesheet" href="<?php echo $root_directory?>/css/plyr.css">
+	<link rel="stylesheet" href="<?php echo $root_directory?>/css/photoswipe.css">
+	<link rel="stylesheet" href="<?php echo $root_directory?>/css/default-skin.css">
+	<link rel="stylesheet" href="<?php echo $root_directory?>/css/main.css">
 </head>
 
 <body class="body">
@@ -107,15 +107,15 @@ $loop = $data[0]['data'];
 					<div class="col-6 col-sm-4 col-md-3 col-xl-2" title="<?php echo $title; ?> (<?php echo $year; ?>)">
 						<div class="card">
 							<div class="card__cover">
-								<img src="<?php echo $poster; ?>" alt="Watch <?php echo $title; ?>" onerror="this.src='./img/noposter.jpg';">
-								<a href="./watch.php?id=<?php echo $imdbid; ?>" class="card__play">
+								<img src="<?php echo $poster; ?>" alt="Watch <?php echo $title; ?>" onerror="this.src='<?php echo $root_directory?>/img/noposter.jpg';">
+								<a href="<?php echo $root_directory?>/watch.php?id=<?php echo $imdbid; ?>" class="card__play">
 									<i class="icon ion-ios-play"></i>
 								</a>
 								<span class="card__rate card__rate--green"><?php echo $rating; ?></span>
 							</div>
 							<div class="card__content">
 								<h3 class="card__title">
-									<a href="./watch.php?id=<?php echo $imdbid; ?>"><?php echo $title; ?></a>
+									<a href="<?php echo $root_directory?>/watch.php?id=<?php echo $imdbid; ?>"><?php echo $title; ?></a>
 								</h3>
 								<span class="card__category">
 									<!-- <a><?php echo $genres1; ?></a>

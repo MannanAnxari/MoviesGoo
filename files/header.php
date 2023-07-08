@@ -1,20 +1,34 @@
 <?php
+include_once 'files/rootDirectory.php';
 include_once 'files/categories.php';
 ?>
+
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-0T4EYQNQPY"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-0T4EYQNQPY');
+	</script>
+</head>
+
 <header class="header">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
 				<div class="header__content">
-					<a href="/filmm" class="header__logo" style="font-size:25px;font-family:tahoma;font-weight:bold;">
-						<span style="color:#7ac37d;">FILM</span><span style="color:#fff;">ATO</span>
+					<a href="<?php echo $root_directory?>" class="header__logo" style="font-size:25px;font-family:tahoma;font-weight:bold;">
+						<span style="color:#7ac37d;">MOVIES</span><span style="color:#fff;">GOO</span>
 					</a>
 					<ul class="header__nav">
 						<li class="header__nav-item">
-							<a class="header__nav-link" href="/">Home</a>
+							<a class="header__nav-link" href="<?php echo $root_directory?>">Home</a>
 						</li>
 						<li class="header__nav-item">
-							<a href="./recent.php" class="header__nav-link">All Movies</a>
+							<a href="<?php echo $root_directory?>/recent.php" class="header__nav-link">All Movies</a>
 						</li>
 						<li class="header__nav-item">
 							<div class="dropdown">
@@ -25,7 +39,7 @@ include_once 'files/categories.php';
 									<?php
 									foreach ($category as $item) {
 									?>
-										<a class="dropdown-item" href="./category.php?query=<?php echo $item; ?>"><?php echo $item; ?></a>
+										<a class="dropdown-item" href="<?php echo $root_directory?>/category.php?query=<?php echo $item; ?>"><?php echo $item; ?></a>
 									<?php
 									}
 									?>
@@ -36,7 +50,7 @@ include_once 'files/categories.php';
 
 
 					<div class="header__auth">
-						<form action="/filmm/search.php" class="header__search" method="GET">
+						<form action="<?php echo $root_directory?>/search.php" class="header__search" method="GET">
 							<input class="header__search-input" name="query" type="text" value="" placeholder="search movies by name...">
 							<button class="header__search-button" type="button">
 								<i class="icon ion-ios-search"></i>
@@ -46,7 +60,7 @@ include_once 'files/categories.php';
 							</button>
 						</form>
 
-						<button class="header__search-btn" type="button">
+						<button class="header__search-btn" type="submit">
 							<i class="icon ion-ios-search"></i>
 						</button>
 					</div>

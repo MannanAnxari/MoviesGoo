@@ -1,4 +1,4 @@
-<h1>Filmato - Watch Movies Script Free with TMDB API without Database</h1>
+<h1>MoviesGoo - Watch Movies Script Free with TMDB API without Database</h1>
 
 <h2>How to Install</h2>
 
@@ -16,14 +16,14 @@ Now upload all files and folders including "data.json" file to your website root
 <br><br>
 That's it! you're done, you have 50,000+ movies active on your website to watch online.
 <br><br>
-Demo: https://filmato.cfd/
+Demo: https://MoviesGoo.cfd/
 <br><br><br>
 Main Page Screenshot<br><br>
-<img src="https://raw.githubusercontent.com/sizzlingkenny/filmato-movie-script-php/main/img/filmato-main.png">
+<img src="https://raw.githubusercontent.com/sizzlingkenny/MoviesGoo-movie-script-php/main/img/MoviesGoo-main.png">
 <br><br><br>
 Search Page Screenshot<br><br>
-<img src="https://raw.githubusercontent.com/sizzlingkenny/filmato-movie-script-php/main/img/filmato-srch.png">
+<img src="https://raw.githubusercontent.com/sizzlingkenny/MoviesGoo-movie-script-php/main/img/MoviesGoo-srch.png">
 <br><br><br>
 Movie Page Screenshot<br><br>
-<img src="https://raw.githubusercontent.com/sizzlingkenny/filmato-movie-script-php/main/img/filmato-movie.png">
+<img src="https://raw.githubusercontent.com/sizzlingkenny/MoviesGoo-movie-script-php/main/img/MoviesGoo-movie.png">
 </h3>

@@ -3,11 +3,18 @@ ini_set('display_errors', 0);
 include_once 'files/apikey.php';
 include_once 'files/datafile.php';
 
-$getimdb = $_GET['id'];
-
 $jsonown = file_get_contents($datafile);		
 $data = json_decode($jsonown, true);
 $loop = $data[0]['data'];
+
+$slug = $_GET['slug'];
+
+foreach ($loop as $item) {
+	if ($item['slug'] == $slug) { 
+        $getimdb = basename($item['imdb']);
+        break;
+    }
+}
 
 $wtitle = array();
 
@@ -49,7 +56,7 @@ $desc = implode(' ', array_slice(str_word_count($plot,1), 0, 20));
 <meta name="robots" content="index, follow">
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title><?php echo implode($wtitle);?> – Filmato Movie Script by 2Embed.cc</title>
+<title><?php echo implode($wtitle);?> – MoviesGoo Movie Script by 2Embed.cc</title>
 <meta name="description" content="Watch <?php echo $title;?> Online, <?php echo $desc;?>">
 <link rel="stylesheet" href="./css/bootstrap-reboot.min.css">
 <link rel="stylesheet" href="./css/bootstrap-grid.min.css">
@@ -98,7 +105,7 @@ $desc = implode(' ', array_slice(str_word_count($plot,1), 0, 20));
 										$rating = $jsonArrayValue['rating'];
 										if(empty($rating)) $rating = '0';
 							?>									
-							<span class="card__rate card__rate--green"><?php echo $rating;?></span>
+							<span class="card__rate card__rate--green">asd<?php echo $rating;?></span>
 							<?php }} ?>
 						</div>
 					</div>
@@ -132,7 +139,7 @@ $desc = implode(' ', array_slice(str_word_count($plot,1), 0, 20));
 							</ul>
 							<div class="card__description">
 								<span style="color:#7ac37d;">Plot</span><br>
-								<?php echo $words20;?>
+								<?php echo $plot;?>
 							</div>
 						</div>
 					</div>

@@ -19,7 +19,7 @@ $loop = $data[0]['data'];
 	<meta name="robots" content="index, follow">
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Filmato – Stream Full HD Movies</title>
+	<title>MoviesGoo – Stream Full HD Movies</title>
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./css/bootstrap-reboot.min.css">
 	<link rel="stylesheet" href="./css/bootstrap-grid.min.css">
@@ -32,6 +32,7 @@ $loop = $data[0]['data'];
 	<link rel="stylesheet" href="./css/default-skin.css">
 	<link rel="stylesheet" href="./css/main.css">
 </head>
+ 
 
 <body class="body">
 	<?php include 'files/header.php'; ?>
@@ -50,7 +51,7 @@ $loop = $data[0]['data'];
 		<div class="">
 			<div class="row">
 				<div class="col-12 movies-banner-header">
-					<h1 class="home__title"><b>Latest Movies <span id="count">(0)</span> </b></h1>
+					<h1 class="home__title"><b>Latest Movies <span id="count" class="d-none">(0)</span> </b></h1>
 
 					<button class="home__nav home__nav--prev" type="button">
 						<i class="icon ion-ios-arrow-round-back"></i>
@@ -92,6 +93,7 @@ $loop = $data[0]['data'];
 
 								$title = $jsonArrayValue['title'];
 								$imdbid = $jsonArrayValue['imdb'];
+								$slug = $jsonArrayValue['slug'];
 								$rating = $jsonArrayValue['rating'];
 								$language = $jsonArrayValue['language'];
 								$year = $jsonArrayValue['year'];
@@ -121,7 +123,7 @@ $loop = $data[0]['data'];
 								<div class="card card--big" title="<?php echo $title; ?> (<?php echo $year; ?>)">
 									<div class="card__cover">
 										<img src="<?php echo $poster; ?>" onerror="this.src='./img/noposter.jpg';" alt="Watch <?php echo $title; ?>">
-										<a href="./watch.php?id=<?php echo $imdbid; ?>" class="card__play">
+										<a href="./watch.php?slug=<?php echo $slug; ?>" class="card__play">
 											<i class="icon ion-ios-play"></i>
 										</a>
 										<span class="d-none card__rate card__rate--green"><?php echo $rating; ?></span>
@@ -134,7 +136,7 @@ $loop = $data[0]['data'];
 												<span class="card__rate card__rate--green"><?php echo $genres2; ?></span>
 											<?php } ?>
 										</div>
-										<h3 class="card__title"><a href="./watch.php?id=<?php echo $imdbid; ?>"><?php echo $title; ?></a></h3>
+										<h3 class="card__title"><a href="<?php echo $root_directory?>/watch.php?id=<?php echo $imdbid; ?>"><?php echo $title; ?></a></h3>
 										<span class="card__category">
 											<?php echo $overview; ?>
 										</span>
@@ -143,7 +145,7 @@ $loop = $data[0]['data'];
 						<?php
 								$counter++;
 							}
-						} 
+						}
 						echo $isBreaked ? '<script>document.getElementById("loader").style.display = "none";</script>' : '';
 
 						?>
@@ -187,7 +189,8 @@ $loop = $data[0]['data'];
 								break;
 							}
 
-							$title = $jsonArrayValue['title'];
+								$slug = $jsonArrayValue['slug'];
+								$title = $jsonArrayValue['title'];
 							$imdbid = $jsonArrayValue['imdb'];
 							$rating = $jsonArrayValue['rating'];
 							$language = $jsonArrayValue['language'];
@@ -239,11 +242,11 @@ $loop = $data[0]['data'];
 								<div class="col-6 col-sm-4 col-md-3 col-xl-2" title="<?php echo $title; ?> (<?php echo $year; ?>)">
 									<div class="card">
 										<div class="card__cover">
-											<img src="./<?php echo $imagePath; ?>" alt="Watch <?php echo $title; ?>" onerror="this.src='./img/noposter.jpg';">
-											<!-- <img src="<?php //echo $poster; 
-															?>" alt="Watch <?php //echo $title; 
-																			?>" onerror="this.src='./img/noposter.jpg';"> -->
-											<a href="./watch.php?id=<?php echo $imdbid; ?>" class="card__play">
+											<!-- <img src="./<?php echo $imagePath; ?>" alt="Watch <?php echo $title; ?>" onerror="this.src='./img/noposter.jpg';"> -->
+											<img src="<?php echo $poster;
+														?>" alt="Watch <?php echo $title;
+																			?>" onerror="this.src='./img/noposter.jpg';">
+											<a href="./watch.php?slug=<?php echo $slug; ?>" class="card__play">
 												<i class="icon ion-ios-play"></i>
 											</a>
 											<span class="card__rate card__rate--green"><?php echo $rating; ?></span>

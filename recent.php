@@ -12,7 +12,7 @@ $loop = $data[0]['data'];
 <meta name="robots" content="index, follow">
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Browse All Movies - Filmato</title>
+<title>Browse All Movies - MoviesGoo</title>
 <link rel="stylesheet" href="./css/bootstrap-reboot.min.css">
 <link rel="stylesheet" href="./css/bootstrap-grid.min.css">
 <link rel="stylesheet" href="./css/owl.carousel.min.css">
@@ -59,6 +59,7 @@ $loop = $data[0]['data'];
 			foreach($yourDataArray as $jsonArrayValue) {
 				$title = $jsonArrayValue['title'];
 				$imdbid = $jsonArrayValue['imdb'];
+				$slug = $jsonArrayValue['slug'];
 				$rating = $jsonArrayValue['rating'];
 				$language = $jsonArrayValue['language'];
 				$year = $jsonArrayValue['year'];
@@ -83,7 +84,7 @@ $loop = $data[0]['data'];
 				<div class="card">
 					<div class="card__cover">
 						<img src="<?php echo $poster;?>" alt="Watch <?php echo $title;?>" onerror="this.src='./img/noposter.jpg';">
-						<a href="./watch.php?id=<?php echo $imdbid;?>" class="card__play">
+						<a href="./watch.php?slug=<?php echo $slug; ?>" class="card__play">
 							<i class="icon ion-ios-play"></i>
 						</a>
 						<span class="card__rate card__rate--green"><?php echo $rating;?></span>
@@ -113,7 +114,7 @@ $loop = $data[0]['data'];
 						  } 
 						  else 
 						  { 
-							$pagerContainer .= sprintf( '<li class="paginator__item paginator__item--prev paginator__item--active"><a href="/recent?page='.$link.'" style="width:max-content;padding:0 10px;cursor:pointer;"><i class="icon ion-ios-arrow-back" style="margin-top:1px;"></i> &nbsp; Prev</a></li>', $page - 1 ); 
+							$pagerContainer .= sprintf( '<li class="paginator__item paginator__item--prev paginator__item--active"><a href="./recent.php?page='.$link.'" style="width:max-content;padding:0 10px;cursor:pointer;"><i class="icon ion-ios-arrow-back" style="margin-top:1px;"></i> &nbsp; Prev</a></li>', $page - 1 ); 
 						  }
 						  $pagerContainer .= '<li class="paginator__item paginator__item--active"><a style="width:max-content;padding:0 10px;">' . $page . ' &nbsp; of &nbsp; ' . $totalPages . '</a></li>'; 
 						  if( $page == $totalPages ) 
@@ -123,7 +124,7 @@ $loop = $data[0]['data'];
 						  else 
 						  { 
 							$pagerContainer .= sprintf( '<li class="paginator__item paginator__item--next paginator__item--active">
-							<a href="/recent?page='.$link.'" style="width:max-content;padding:0 10px;cursor:pointer;">Next &nbsp; <i class="icon ion-ios-arrow-forward" style="margin-top:1px;"></i></a></li>', $page + 1 ); 
+							<a href="./recent.php?page='.$link.'" style="width:max-content;padding:0 10px;cursor:pointer;">Next &nbsp; <i class="icon ion-ios-arrow-forward" style="margin-top:1px;"></i></a></li>', $page + 1 ); 
 						  }           
 						}
 						echo $pagerContainer;

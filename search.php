@@ -16,7 +16,7 @@ $loop = $data[0]['data'];
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Search Results - Filmato</title>
+	<title>Search Results - MoviesGoo</title>
 	<link rel="stylesheet" href="./css/bootstrap-reboot.min.css">
 	<link rel="stylesheet" href="./css/bootstrap-grid.min.css">
 	<link rel="stylesheet" href="./css/owl.carousel.min.css">
@@ -63,7 +63,8 @@ $loop = $data[0]['data'];
 
 						$title = $jsonArrayValue['title'];
 						$imdbid = $jsonArrayValue['imdb'];
-						$rating = $jsonArrayValue['rating'];
+								$slug = $jsonArrayValue['slug'];
+								$rating = $jsonArrayValue['rating'];
 						$language = $jsonArrayValue['language'];
 						$year = $jsonArrayValue['year'];
 
@@ -93,7 +94,7 @@ $loop = $data[0]['data'];
 							<div class="card">
 								<div class="card__cover">
 									<img src="<?php echo $poster; ?>" alt="Watch <?php echo $title; ?>" onerror="this.src='./img/noposter.jpg';">
-									<a href="./watch.php?id=<?php echo $imdbid; ?>" class="card__play">
+									<a href="./watch.php?slug=<?php echo $slug; ?>" class="card__play">
 										<i class="icon ion-ios-play"></i>
 									</a>
 									<span class="card__rate card__rate--green"><?php echo $rating; ?></span>

@@ -1,56 +1,87 @@
-	<link rel="stylesheet" href="./css/main.css">
+<link rel="stylesheet" href="./css/main.css">
 
-	<body class="m-0">
+<body class="m-0">
+    <h1 class="bg-dark vh-100 vw-100 d-flex align-items-center justify-content-center text-white">
+        Images + Data Has Been Downloaded: &nbsp; <span id="dataDownloaded"> (0) </span>
+    </h1>
+</body>
 
-	    <h1 class="bg-dark vh-100 vw-100 d-flex align-items-center justify-content-center" id="dataDownloaded">
+<?php
+set_time_limit(36000);
 
-	        (0)
+ini_set('display_errors', 0);
+include_once 'files/apikey.php';
+include_once 'files/datafile.php';
 
-	        <?php
-            ini_set('display_errors', 0);
-            include_once 'files/apikey.php';
-            include_once 'files/datafile.php';
+$key = $_GET['query'];
 
-            $key = $_GET['query'];
+$json = file_get_contents($datafile);
+$data = json_decode($json, true);
+$loop = $data[0]['data'];
 
-            $json = file_get_contents($datafile);
-            $data = json_decode($json, true);
-            $loop = $data[0]['data'];
+$counter = 0;
 
-            $counter = 0;
+foreach ($loop as $jsonArrayKeyz => $jsonArrayValue) {
+    if ($counter >= 5) {
+        // break;
+    }
 
-            foreach ($loop as $jsonArrayKeyz => $jsonArrayValue) {
+    $imdbid = $jsonArrayValue['imdb'];
+    $imdbid = basename($imdbid);
 
-                if ($counter >= 2) {
-                    break;
-                }
+    $json = file_get_contents('http://api.themoviedb.org/3/movie/' . $imdbid . '?api_key=' . $apikey);
+    $obj = json_decode($json, true);
+    $tmdbid = $obj["id"];
 
-                $imdbid = $jsonArrayValue['imdb'];
+    echo str_pad('', 4096) . PHP_EOL;
 
-                $imdbid = basename($imdbid);
+    ob_flush();
+    flush();
 
-                $json = file_get_contents('http://api.themoviedb.org/3/movie/' . $imdbid . '?api_key=' . $apikey);
+    $poster = 'https://image.tmdb.org/t/p/original' . $obj["poster_path"];
 
-                $filename = 'alldata.json';
-                $existingData = file_get_contents($filename);
+    $filename = 'alldata.json';
+    $existingData = file_get_contents($filename);
 
-                // Convert JSON data to PHP array
-                $existingArray = json_decode($existingData, true);
+    // this code for downloading images 
+    // start
+    $folderPath = 'dataimages/';
 
-                // Append new JSON object to the array
-                $newObject = json_decode($json, true);
-                $existingArray[] = $newObject;
 
-                // Convert the updated array back to JSON
-                $updatedData = json_encode($existingArray);
+    if ($counter >= 14000) {
 
-                // Write the updated JSON data back to the file
-                file_put_contents($filename, $updatedData);
+        // Create the folder if it doesn't exist
+        if (!file_exists($folderPath)) {
+            mkdir($folderPath, 0777, true);
+        }
 
-                echo '<script>dataDownloaded.innerHTML = "(' . $counter . ')"</script>';
+        $imagePath = $folderPath . $imdbid . '.' . pathinfo($poster, PATHINFO_EXTENSION);
 
-                $counter++;
-            }
-            ?>
-	    </h1>
-	</body>
+        $imageData = file_get_contents($poster);
+
+        if ($imageData === false) {
+        } else {
+            file_put_contents($imagePath, $imageData);
+        }
+    }
+    // end
+
+    $ct = $counter + 1;
+    echo '<script>dataDownloaded.innerHTML = "(' . $ct . ')"</script>';
+
+    // Convert JSON data to PHP array
+    $existingArray = json_decode($existingData, true);
+
+    // Append new JSON object to the array
+    $newObject = json_decode($json, true);
+    $existingArray[] = $newObject;
+
+    // Convert the updated array back to JSON
+    $updatedData = json_encode($existingArray);
+
+    // Write the updated JSON data back to the file
+    file_put_contents($filename, $updatedData);
+
+    $counter++;
+}
+?>

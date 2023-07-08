@@ -174,9 +174,15 @@ ul {
 .m-0 {
   margin: 0;
 }
-#dataDownloaded{
+
+#dataDownloaded {
   color: white;
 }
+
+.text-white {
+  color: white;
+}
+
 .align-items-center {
   align-items: center;
 }
@@ -3538,6 +3544,10 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   letter-spacing: 0.4px;
 }
 
+.d-none {
+  display: none;
+}
+
 .comments__time {
   display: block;
   font-size: 12px;
@@ -5034,6 +5044,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .dropdown-menu {
   position: absolute;
   top: 72%;
+  max-height: 54vh;
+  overflow: auto;
   left: 0;
   z-index: 1;
   display: none;
