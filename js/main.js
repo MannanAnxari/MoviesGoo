@@ -59,12 +59,12 @@ $(document).ready(function () {
 	});
 
 	$('.home__carousel').owlCarousel({
-		mouseDrag: false,
-		touchDrag: false,
-		dots: false,
-		// autoplayTimeout:5000,
-		loop: false,
-		autoplay: false,
+		mouseDrag: true,
+		touchDrag: true,
+		dots: true,
+		autoplayTimeout:5000,
+		loop: true,
+		autoplay: true,
 		smartSpeed: 700,
 		margin: 0,
 		items: 1,
