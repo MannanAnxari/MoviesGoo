@@ -57,7 +57,7 @@ $loop = $data[0]['data'];
 			if( $offset < 0 ) $offset = 0;
 			$yourDataArray = array_slice( $loop, $offset, $limit );
 			foreach($yourDataArray as $jsonArrayValue) {
-				$title = $jsonArrayValue['title'];
+				$title = $jsonArrayValue['title']; 
 				$imdbid = $jsonArrayValue['imdb'];
 				$slug = $jsonArrayValue['slug'];
 				$rating = $jsonArrayValue['rating'];
