@@ -5076,3 +5076,39 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .dropdown.active .dropdown-menu {
   display: block;
 }
+
+input.primary:focus {
+  border-color: #7ac37d;
+}
+
+input.primary,
+textarea.primary {
+  transition: 0.4s;
+  border-radius: 6px;
+  background-color: rgba(210, 201, 255, 0.04);
+  border: 1px solid transparent;
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: 0.4px;
+  padding: 8px 16px;
+  width: 100%;
+}
+
+.btn-main {
+  border-radius: 6px;
+  background-color: #7ac37d;
+  padding: 10px 22px;
+  color: black;
+  font-weight: 700;
+  transition: all .3s ease;
+}
+
+.btn-main:hover {
+  background-color: #7ac37dcf;
+  transform: translate(0px, -2px) scale(1.02);
+}
+
+.btn-main:active {
+  background-color: #4f8251;
+  transform: translate(0px, 0px) scale(1);  
+}

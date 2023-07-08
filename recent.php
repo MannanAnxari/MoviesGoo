@@ -25,7 +25,8 @@ $loop = $data[0]['data'];
 <link rel="stylesheet" href="./css/main.css">
 </head>
 <body class="body">
-<?php include 'files/header.php';?>
+<?php include 'files/header.php';
+?>
 <!-- page title -->
 <section class="section section--first section--bg" data-bg="img/section/section.jpg">
 	<div class="container">

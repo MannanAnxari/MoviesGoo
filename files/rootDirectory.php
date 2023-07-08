@@ -1,2 +1,2 @@
 <?php
-$root_directory = '/filmm';
+$root_directory = '/';

@@ -21,7 +21,8 @@ include_once 'files/categories.php';
 			<div class="col-12">
 				<div class="header__content">
 					<a href="<?php echo $root_directory?>" class="header__logo" style="font-size:25px;font-family:tahoma;font-weight:bold;">
-						<span style="color:#7ac37d;">MOVIES</span><span style="color:#fff;">GOO</span>
+						<!-- <span style="color:#7ac37d;">MOVIES</span><span style="color:#fff;">GOO</span> -->
+						<img src="<?php echo $root_directory?>/img/home/logo.png" alt="Movies Goo">
 					</a>
 					<ul class="header__nav">
 						<li class="header__nav-item">
@@ -46,13 +47,16 @@ include_once 'files/categories.php';
 								</div>
 							</div>
 						</li>
+						<li class="header__nav-item">
+							<a href="<?php echo $root_directory?>/contact.php" class="header__nav-link">Contact Us</a>
+						</li>
 					</ul>
 
 
 					<div class="header__auth">
 						<form action="<?php echo $root_directory?>/search.php" class="header__search" method="GET">
 							<input class="header__search-input" name="query" type="text" value="" placeholder="search movies by name...">
-							<button class="header__search-button" type="button">
+							<button class="header__search-button" type="submit">
 								<i class="icon ion-ios-search"></i>
 							</button>
 							<button class="header__search-close" type="button">

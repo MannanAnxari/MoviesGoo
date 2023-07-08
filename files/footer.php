@@ -1,5 +1,5 @@
 <?php
-include_once './rootDirectory.php';
+// include_once './rootDirectory.php';
 ?>
 <footer class="footer">
 	<div class="container">
@@ -7,7 +7,9 @@ include_once './rootDirectory.php';
 			<div class="col-12">
 				<div class="footer__content">
 					<a href="<?php echo $root_directory?>" class="footer__logo" style="font-size:25px;font-family:tahoma;font-weight:bold;">
-						<span style="color:#7ac37d;">MOVIES</span><span style="color:#fff;">GOO</span>
+						<!-- <span style="color:#7ac37d;">MOVIES</span><span style="color:#fff;">GOO</span> -->
+						<img src="<?php echo $root_directory?>/img/home/logo.png" alt="Movies Goo">
+
 					</a>
 					
 					<span class="footer__copyright"><a rel="nofollow" href="https://www.google.com/search?q=moviesgoo.com" target="_blank">MoviesGoo</a> © 2023 <br></span>
@@ -46,17 +48,17 @@ include_once './rootDirectory.php';
 // don't change anything below here, all the following files are required
 
 echo 
-'<script src="'.$root_directory.'/js/jquery-3.5.1.min.js"></script>F
-<script src="'.$root_directory.'/js/bootstrap.bundle.min.js"></script>F
-<script src="'.$root_directory.'/js/owl.carousel.min.js"></script>F
-<script src="'.$root_directory.'/js/jquery.mousewheel.min.js"></script>F
-<script src="'.$root_directory.'/js/jquery.mCustomScrollbar.min.js"></script>F
-<script src="'.$root_directory.'/js/wNumb.js"></script>F
-<script src="'.$root_directory.'/js/nouislider.min.js"></script>F
-<script src="'.$root_directory.'/js/jquery.morelines.min.js"></script>F
+'<script src="'.$root_directory.'/js/jquery-3.5.1.min.js"></script>
+<script src="'.$root_directory.'/js/bootstrap.bundle.min.js"></script>
+<script src="'.$root_directory.'/js/owl.carousel.min.js"></script>
+<script src="'.$root_directory.'/js/jquery.mousewheel.min.js"></script>
+<script src="'.$root_directory.'/js/jquery.mCustomScrollbar.min.js"></script>
+<script src="'.$root_directory.'/js/wNumb.js"></script>
+<script src="'.$root_directory.'/js/nouislider.min.js"></script>
+<script src="'.$root_directory.'/js/jquery.morelines.min.js"></script>
 <script src="'.$root_directory.'/js/plyr.min.js"></script><img F
 src="https://whos.amung.us/widget/MoviesGoos/" 
-style="display:none;"><script src="'.$root_directory.'/js/main.js"></script>F
-<script src="'.$root_directory.'/js/photoswipe.min.js"></script>F
+style="display:none;"><script src="'.$root_directory.'/js/main.js"></script>
+<script src="'.$root_directory.'/js/photoswipe.min.js"></script>
 <script src="'.$root_directory.'/js/photoswipe-ui-default.min.js"></script>';
 ?>

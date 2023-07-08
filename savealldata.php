@@ -47,7 +47,6 @@ foreach ($loop as $jsonArrayKeyz => $jsonArrayValue) {
     // start
     $folderPath = 'dataimages/';
 
-
     if ($counter >= 14000) {
 
         // Create the folder if it doesn't exist

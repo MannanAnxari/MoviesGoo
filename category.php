@@ -3,6 +3,7 @@ ini_set('display_errors', 0);
 include_once 'files/apikey.php';
 include_once 'files/datafile.php';
 include_once 'files/config.php';
+include_once 'files/rootDirectory.php';
 
 $key = $_GET['query'];
 
