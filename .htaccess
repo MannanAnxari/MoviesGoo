@@ -2,6 +2,8 @@ Options FollowSymLinks
 RewriteEngine on
 RewriteBase /
 
+php_value memory_limit 512M
+
 #RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 #RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
@@ -15,3 +17,4 @@ RewriteRule ^imdbthumbs/(.*).jpg$ files/imdbposter.php?imdb=$1 [L,NC]
 RewriteRule ^bgposters/(.*).jpg$ files/imdbimgs.php?imdb=$1 [L,NC]
 
 ErrorDocument 404 /404.php
+

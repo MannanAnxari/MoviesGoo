@@ -1,6 +1,8 @@
 <?php
 include_once 'files/rootDirectory.php';
 include_once 'files/categories.php';
+echo '<script src="'.$root_directory.'/js/vanilla-toast.min.js"></script>';
+
 ?>
 
 <head>

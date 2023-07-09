@@ -54,6 +54,7 @@ echo
 <script src="'.$root_directory.'/js/jquery.mousewheel.min.js"></script>
 <script src="'.$root_directory.'/js/jquery.mCustomScrollbar.min.js"></script>
 <script src="'.$root_directory.'/js/wNumb.js"></script>
+
 <script src="'.$root_directory.'/js/nouislider.min.js"></script>
 <script src="'.$root_directory.'/js/jquery.morelines.min.js"></script>
 <script src="'.$root_directory.'/js/plyr.min.js"></script><img 
