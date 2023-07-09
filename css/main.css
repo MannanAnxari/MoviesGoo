@@ -5184,8 +5184,8 @@ textarea.primary {
   }
 
   .todayEntries {
-    padding: 10px 18px !important;
-    border-radius: 6px !important;
+    padding: 10px 18px ;
+    border-radius: 6px ;
     font-size: 12px;
   }
 }
