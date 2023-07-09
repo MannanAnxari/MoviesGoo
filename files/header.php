@@ -40,7 +40,7 @@ include_once 'files/categories.php';
 									<?php
 									foreach ($category as $item) {
 									?>
-										<a class="dropdown-item" href="<?php echo $root_directory?>/category.php?query=<?php echo $item; ?>"><?php echo $item; ?></a>
+										<a class="dropdown-item" href="<?php echo $root_directory?>/category.php?query=<?php echo strtolower($item); ?>"><?php echo $item; ?></a>
 									<?php
 									}
 									?>
