@@ -4,8 +4,10 @@ include_once 'files/datafile.php';
 include_once 'files/rootDirectory.php';
 
 ?>
-
-<link rel="stylesheet" href="<?php echo $root_directory ?>/css/main.css">
+<head>
+    <link rel="stylesheet" href="<?php echo $root_directory ?>/css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
 <body class="m-0">
     <div class="bg-dark vh-100 vw-100 mx-auto align-items-center text-white container">
