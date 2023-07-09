@@ -64,7 +64,7 @@ $desc = implode(' ', array_slice(str_word_count($plot,1), 0, 20));
 <link rel="stylesheet" href="./css/owl.carousel.min.css">
 <link rel="stylesheet" href="./css/jquery.mCustomScrollbar.min.css">
 <link rel="stylesheet" href="./css/nouislider.min.css">
-	<link rel="shortcut icon" type="image/png" href="<?php echo $root_directory?>/icon/favicon-32x32.png"/>
+	<link rel="icon" href="<?php echo $root_directory?>/icon/favicon-32x32.png" type="image/png">
 <link rel="stylesheet" href="./css/ionicons.min.css">
 <link rel="stylesheet" href="./css/plyr.css">
 <link rel="stylesheet" href="./css/photoswipe.css">
