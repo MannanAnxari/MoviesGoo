@@ -1,2 +1,4 @@
 config.php
 rootDirectory.php
+data.json
+allDataForMovies.json
