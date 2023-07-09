@@ -5,6 +5,7 @@ $json = file_get_contents($datafile);
 
 // die();
 set_time_limit(18000);
+$allMoviesData = json_decode(file_get_contents($dataFileMovies), true);
 
 $data = json_decode($json, true);
 $loop = $data[0]['data'];
@@ -32,7 +33,7 @@ $loop = $data[0]['data'];
 	<link rel="stylesheet" href="./css/default-skin.css">
 	<link rel="stylesheet" href="./css/main.css">
 </head>
- 
+
 
 <body class="body">
 	<?php include 'files/header.php'; ?>
@@ -102,8 +103,20 @@ $loop = $data[0]['data'];
 
 								if (empty($rating)) $rating = '0';
 
-								$json = file_get_contents('http://api.themoviedb.org/3/movie/' . $imdbid . '?api_key=' . $apikey);
-								$obj = json_decode($json, true);
+								$obj = [];
+
+								$matches = array_filter($allMoviesData, function ($item) use ($imdbid) {
+									if (isset($item['imdb_id'])) {
+										return basename($item['imdb_id']) === $imdbid;
+									}
+								});
+
+								if (!empty($matches)) {
+									$obj = reset($matches);
+								}
+
+								// $json = file_get_contents('http://api.themoviedb.org/3/movie/' . $imdbid . '?api_key=' . $apikey);
+								// $obj = json_decode($json, true);
 								$tmdbid = $obj["id"];
 								$duration = $obj["runtime"];
 								$overview = $obj["overview"];
@@ -120,8 +133,8 @@ $loop = $data[0]['data'];
 
 						?>
 
-								<div class="card card--big" title="<?php echo $title; ?> (<?php echo $year; ?>)">
-									<div class="card__cover">
+								<div class="card card--big">
+									<div class="card__cover" title="<?php echo $title; ?> (<?php echo $year; ?>)">
 										<img src="<?php echo $poster; ?>" onerror="this.src='./img/noposter.jpg';" alt="Watch <?php echo $title; ?>">
 										<a href="./watch.php?slug=<?php echo $slug; ?>" class="card__play">
 											<i class="icon ion-ios-play"></i>
@@ -136,8 +149,8 @@ $loop = $data[0]['data'];
 												<span class="card__rate card__rate--green"><?php echo $genres2; ?></span>
 											<?php } ?>
 										</div>
-										<h3 class="card__title"><a href="<?php echo $root_directory?>/watch.php?id=<?php echo $imdbid; ?>"><?php echo $title; ?></a></h3>
-										<span class="card__category">
+										<h3 class="card__title"><a href="<?php echo $root_directory ?>/watch.php?slug=<?php echo $slug; ?>"><?php echo $title; ?></a></h3>
+										<span class="card__category" title="<?php echo $overview; ?>">
 											<?php echo $overview; ?>
 										</span>
 									</div>
@@ -146,7 +159,6 @@ $loop = $data[0]['data'];
 								$counter++;
 							}
 						}
-						echo $isBreaked ? '<script>document.getElementById("loader").style.display = "none";</script>' : '';
 
 						?>
 					</div>
@@ -154,6 +166,9 @@ $loop = $data[0]['data'];
 			</div>
 		</div>
 	</section>
+	<script>
+		document.getElementById("loader").style.display = "none";
+	</script>
 	<!-- end home -->
 
 	<!-- content -->
@@ -189,8 +204,8 @@ $loop = $data[0]['data'];
 								break;
 							}
 
-								$slug = $jsonArrayValue['slug'];
-								$title = $jsonArrayValue['title'];
+							$slug = $jsonArrayValue['slug'];
+							$title = $jsonArrayValue['title'];
 							$imdbid = $jsonArrayValue['imdb'];
 							$rating = $jsonArrayValue['rating'];
 							$language = $jsonArrayValue['language'];
@@ -200,70 +215,89 @@ $loop = $data[0]['data'];
 
 							if (empty($rating)) $rating = '0';
 
-							$json = @file_get_contents('http://api.themoviedb.org/3/movie/' . $imdbid . '?api_key=' . $apikey);
+							// $json = @file_get_contents('http://api.themoviedb.org/3/movie/' . $imdbid . '?api_key=' . $apikey);
+							// echo 'http://api.themoviedb.org/3/movie/' . $imdbid . '?api_key=' . $apikey;
 
-							if ($json) {
+							// if ($json) {
+
+							$obj = [];
+
+							$matches = array_filter($allMoviesData, function ($item) use ($imdbid) {
+								if (isset($item['imdb_id'])) {
+									return basename($item['imdb_id']) === $imdbid;
+								}
+							});
+
+							if (!empty($matches)) {
+								$obj = reset($matches);
+							}
+							// echo "<pre>";
+							// print_r($obj);
+							// die();
+							// $obj = json_decode($json, true);
+							$tmdbid = $obj["id"];
+							$duration = $obj["runtime"];
+							$genres = $obj["genres"];
+							$year = $obj["release_date"];
+							$poster = 'https://image.tmdb.org/t/p/original' . $obj["poster_path"];
 
 
-								$obj = json_decode($json, true);
-								$tmdbid = $obj["id"];
-								$duration = $obj["runtime"];
-								$genres = $obj["genres"];
-								$year = $obj["release_date"];
-								$poster = 'https://image.tmdb.org/t/p/original' . $obj["poster_path"];
+							// this code for downloading images 
+							// start
+							$folderPath = 'imdbImages/';
 
+							// if (!file_exists($folderPath)) {
+							// 	mkdir($folderPath, 0777, true);
+							// }
 
-								// this code for downloading images 
-								// start
-								$folderPath = 'imdbImages/';
+							$imagePath = $folderPath . $imdbid . '.' . pathinfo($poster, PATHINFO_EXTENSION);
 
-								// if (!file_exists($folderPath)) {
-								// 	mkdir($folderPath, 0777, true);
-								// }
+							// $imageData = file_get_contents($poster);
 
-								$imagePath = $folderPath . $imdbid . '.' . pathinfo($poster, PATHINFO_EXTENSION);
+							// file_put_contents($imagePath, $imageData);
+							// end
 
-								// $imageData = file_get_contents($poster);
+							$country = isset($obj["production_countries"][0]["name"]) ? $obj["production_countries"][0]["name"] : '';
 
-								// file_put_contents($imagePath, $imageData);
-								// end
+							$genres1 = isset($genres[0]) ? $genres[0]['name'] : '';
+							$genres2 = isset($genres[1]) ? $genres[1]['name'] : '';
 
-								$country = isset($obj["production_countries"][0]["name"]) ? $obj["production_countries"][0]["name"] : '';
-
-								$genres1 = isset($genres[0]) ? $genres[0]['name'] : '';
-								$genres2 = isset($genres[1]) ? $genres[1]['name'] : '';
-
-								$year = substr($year, 0, strpos($year, "-"));
+							$year = substr($year, 0, strpos($year, "-"));
 						?>
 
-								<!-- <?php echo '<script>count.innerHTML = "(' . $counter . ')"</script>'; ?> -->
+							<!-- <?php echo '<script>count.innerHTML = "(' . $counter . ')"</script>'; ?> -->
 
-								<!-- card -->
-								<div class="col-6 col-sm-4 col-md-3 col-xl-2" title="<?php echo $title; ?> (<?php echo $year; ?>)">
-									<div class="card">
-										<div class="card__cover">
-											<!-- <img src="./<?php echo $imagePath; ?>" alt="Watch <?php echo $title; ?>" onerror="this.src='./img/noposter.jpg';"> -->
-											<img src="<?php echo $poster;
-														?>" alt="Watch <?php echo $title;
-																			?>" onerror="this.src='./img/noposter.jpg';">
-											<a href="./watch.php?slug=<?php echo $slug; ?>" class="card__play">
-												<i class="icon ion-ios-play"></i>
-											</a>
-											<span class="card__rate card__rate--green"><?php echo $rating; ?></span>
-										</div>
-										<div class="card__content">
-											<h3 class="card__title"><a href="./watch.php?id=<?php echo $imdbid; ?>"><?php echo $title; ?></a></h3>
-											<span class="card__category">
-												<a><?php echo $genres1; ?></a>
-												<a><?php echo $genres2; ?></a>
-											</span>
+							<!-- card -->
+							<div class="col-6 col-sm-4 col-md-3 col-xl-2" title="<?php echo $title; ?> (<?php echo $year; ?>)">
+								<div class="card">
+									<div class="card__cover">
+										<!-- <img src="./<?php echo $imagePath; ?>" alt="Watch <?php echo $title; ?>" onerror="this.src='./img/noposter.jpg';"> -->
+										<img src="<?php echo $poster;
+													?>" alt="Watch <?php echo $title;
+																	?>" onerror="this.src='./img/noposter.jpg';">
+										<a href="./watch.php?slug=<?php echo $slug; ?>" class="card__play">
+											<i class="icon ion-ios-play"></i>
+										</a>
+										<div class="new-badges">
+											<?php if ($rating) { ?>
+												<span class="card__rate card__rate--green"><?php echo $rating; ?> &nbsp; <i class="icon ion-ios-star"></i></span>
+											<?php } ?>
+											<span class="card__rate card__rate--green"><?php echo $year; ?></span>
 										</div>
 									</div>
+									<div class="card__content">
+										<h3 class="card__title"><a href="./watch.php?slug=<?php echo $slug; ?>"><?php echo $title; ?></a></h3>
+										<span class="card__category">
+											<a><?php echo $genres1; ?></a>
+											<a><?php echo $genres2; ?></a>
+										</span>
+									</div>
 								</div>
-								<!-- end card -->
+							</div>
+							<!-- end card -->
 						<?php
-								$counter++;
-							}
+							$counter++;
+							// }
 						}
 						?>
 					</div>

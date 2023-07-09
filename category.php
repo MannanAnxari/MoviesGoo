@@ -7,6 +7,7 @@ include_once 'files/rootDirectory.php';
 
 $key = $_GET['query'];
 
+$allMoviesData = json_decode(file_get_contents($dataFileMovies), true);
 $json = file_get_contents($datafile);
 $data = json_decode($json, true);
 $loop = $data[0]['data'];
@@ -19,16 +20,16 @@ $loop = $data[0]['data'];
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Category Results - MoviesGoo</title>
-	<link rel="stylesheet" href="<?php echo $root_directory?>/css/bootstrap-reboot.min.css">
-	<link rel="stylesheet" href="<?php echo $root_directory?>/css/bootstrap-grid.min.css">
-	<link rel="stylesheet" href="<?php echo $root_directory?>/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="<?php echo $root_directory?>/css/jquery.mCustomScrollbar.min.css">
-	<link rel="stylesheet" href="<?php echo $root_directory?>/css/nouislider.min.css">
-	<link rel="stylesheet" href="<?php echo $root_directory?>/css/ionicons.min.css">
-	<link rel="stylesheet" href="<?php echo $root_directory?>/css/plyr.css">
-	<link rel="stylesheet" href="<?php echo $root_directory?>/css/photoswipe.css">
-	<link rel="stylesheet" href="<?php echo $root_directory?>/css/default-skin.css">
-	<link rel="stylesheet" href="<?php echo $root_directory?>/css/main.css">
+	<link rel="stylesheet" href="<?php echo $root_directory ?>/css/bootstrap-reboot.min.css">
+	<link rel="stylesheet" href="<?php echo $root_directory ?>/css/bootstrap-grid.min.css">
+	<link rel="stylesheet" href="<?php echo $root_directory ?>/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="<?php echo $root_directory ?>/css/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="<?php echo $root_directory ?>/css/nouislider.min.css">
+	<link rel="stylesheet" href="<?php echo $root_directory ?>/css/ionicons.min.css">
+	<link rel="stylesheet" href="<?php echo $root_directory ?>/css/plyr.css">
+	<link rel="stylesheet" href="<?php echo $root_directory ?>/css/photoswipe.css">
+	<link rel="stylesheet" href="<?php echo $root_directory ?>/css/default-skin.css">
+	<link rel="stylesheet" href="<?php echo $root_directory ?>/css/main.css">
 </head>
 
 <body class="body">
@@ -52,41 +53,21 @@ $loop = $data[0]['data'];
 	<!-- catalog -->
 	<div class="catalog">
 		<div class="container">
-			<div class="row">
+			<div class="row" id="movie-container">
 				<?php
 				$counter = 0;
 
-				foreach ($loop as $jsonArrayKeyz => $jsonArrayValue) {
+				// $displayedMovies = [];
 
-					if ($counter >= $category_page_items_to_show) {
-						break;
-					}
+				// $page = isset($_GET['page']) ? $_GET['page'] : 1; // Get the current page number from the URL parameter
+				// $itemsPerPage = 48; // Number of items to display per page
+				// $offset = ($page - 1) * $itemsPerPage; // Calculate the offset for the current page
 
-					$title = $jsonArrayValue['title'];
-					$imdbid = $jsonArrayValue['imdb'];
-					$rating = $jsonArrayValue['rating'];
-					$language = $jsonArrayValue['language'];
-					$year = $jsonArrayValue['year'];
+				// // Get the movies for the current page using array slice
+				// $movies = array_slice($allMoviesData, $offset, $itemsPerPage);
 
-					$imdbid = basename($imdbid);
-
-					if (empty($rating)) $rating = '0';
-
-					$json = file_get_contents('http://api.themoviedb.org/3/movie/' . $imdbid . '?api_key=' . $apikey);
-
-					$obj = json_decode($json, true);
-					$tmdbid = $obj["id"];
-					$duration = $obj["runtime"];
-					$genres = $obj["genres"];
-					$year = $obj["release_date"];
-					$poster = '//image.tmdb.org/t/p/original' . $obj["poster_path"];
-
-					$country = $obj["production_countries"][0]["name"];
-
-					$genres1 = isset($genres[0]) ? $genres[0]['name'] : '';
-					$genres2 = isset($genres[1]) ? $genres[1]['name'] : '';
-
-					$year = substr($year, 0, strpos($year, "-"));
+				foreach ($allMoviesData as $jsonArrayKeyz => $jsonArrayValue) {
+					$genres = $jsonArrayValue["genres"];
 
 					// Check if genres contain "action"
 					$hasActionGenre = false;
@@ -103,20 +84,60 @@ $loop = $data[0]['data'];
 					if (!$hasActionGenre) {
 						continue;
 					}
+
+					// Rest of your existing code...
+
+					$title = $jsonArrayValue['title'];
+					$imdbid = $jsonArrayValue['imdb_id'];
+					$rating;
+					$language = $jsonArrayValue['language'];
+					$year = $jsonArrayValue['year'];
+
+					$matches = array_filter($loop, function ($item) use ($imdbid) {
+						return basename($item['imdb']) === $imdbid;
+					});
+
+					if (!empty($matches)) {
+						$rating = reset($matches)['rating'];
+					}
+
+					$imdbid = basename($imdbid);
+
+					if (empty($rating)) {
+						$rating = '0';
+					}
+
+					$tmdbid = $jsonArrayValue["id"];
+					$duration = $jsonArrayValue["runtime"];
+					$year = $jsonArrayValue["release_date"];
+					$poster = '//image.tmdb.org/t/p/original' . $jsonArrayValue["poster_path"];
+
+					$country = $jsonArrayValue["production_countries"][0]["name"];
+
+					$genres1 = isset($genres[0]) ? $genres[0]['name'] : '';
+					$genres2 = isset($genres[1]) ? $genres[1]['name'] : '';
+
+					$year = substr($year, 0, strpos($year, "-"));
+
 				?>
 					<!-- card -->
 					<div class="col-6 col-sm-4 col-md-3 col-xl-2" title="<?php echo $title; ?> (<?php echo $year; ?>)">
 						<div class="card">
 							<div class="card__cover">
-								<img src="<?php echo $poster; ?>" alt="Watch <?php echo $title; ?>" onerror="this.src='<?php echo $root_directory?>/img/noposter.jpg';">
-								<a href="<?php echo $root_directory?>/watch.php?id=<?php echo $imdbid; ?>" class="card__play">
+								<img src="<?php echo $poster; ?>" alt="Watch <?php echo $title; ?>" onerror="this.src='<?php echo $root_directory ?>/img/noposter.jpg';">
+								<a href="<?php echo $root_directory ?>/watch.php?slug=<?php echo $slug; ?>" class="card__play">
 									<i class="icon ion-ios-play"></i>
 								</a>
-								<span class="card__rate card__rate--green"><?php echo $rating; ?></span>
+								<div class="new-badges">
+									<?php if ($rating) { ?>
+										<span class="card__rate card__rate--green"><?php echo $rating; ?> &nbsp; <i class="icon ion-ios-star"></i></span>
+									<?php } ?>
+									<span class="card__rate card__rate--green"><?php echo $year; ?></span>
+								</div>
 							</div>
 							<div class="card__content">
 								<h3 class="card__title">
-									<a href="<?php echo $root_directory?>/watch.php?id=<?php echo $imdbid; ?>"><?php echo $title; ?></a>
+									<a href="<?php echo $root_directory ?>/watch.php?slug=<?php echo $slug; ?>"><?php echo $title; ?></a>
 								</h3>
 								<span class="card__category">
 									<!-- <a><?php echo $genres1; ?></a>
@@ -133,15 +154,123 @@ $loop = $data[0]['data'];
 							</div>
 						</div>
 					</div>
-					<!-- end card -->
 				<?php
-					$counter++;
-
-					if ($counter >= 48) {
-						break;
-					}
 				}
+
+				// if ($counter >= $itemsPerPage) {
+				// 	$page++;
+				// }
 				?>
+
+				<!-- <script>
+					var page = <?php echo $page + 1; ?>;
+					var loading = false; 
+
+					window.addEventListener('scroll', function() {
+						if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && !loading) {
+							loadMoreData();
+						}
+					});
+
+					function loadMoreData() {
+						loading = true;
+
+						setTimeout(function() {
+							<?php
+
+
+							$nextMovies = array_slice($allMoviesData, ($page - 1) * $itemsPerPage, $itemsPerPage);
+
+							foreach ($nextMovies as $jsonArrayKeyz => $jsonArrayValue) {
+								$genres = $jsonArrayValue["genres"];
+
+								$hasActionGenre = false;
+								if (isset($genres)) {
+									foreach ($genres as $genre) {
+										if (strtolower($genre['name']) === strtolower($key)) {
+											$hasActionGenre = true;
+											break;
+										}
+									}
+								}
+
+								if (!$hasActionGenre) {
+									continue;
+								}
+
+								$title = $jsonArrayValue['title'];
+								$imdbid = $jsonArrayValue['imdb_id'];
+								$rating;
+								$language = $jsonArrayValue['language'];
+								$year = $jsonArrayValue['year'];
+
+								$matches = array_filter($loop, function ($item) use ($imdbid) {
+									return basename($item['imdb']) === $imdbid;
+								});
+
+								if (!empty($matches)) {
+									$rating = reset($matches)['rating'];
+								} else {
+									$rating = '0';
+								}
+
+								// $imdbid = basename($imdbid);
+
+								// Check if the movie has already been displayed
+								if (in_array($imdbid, $displayedMovies)) {
+									continue; // Skip appending duplicate movie
+								}
+
+								$displayedMovies[] = $imdbid; // Add IMDb ID to displayedMovies array
+
+								$tmdbid = $jsonArrayValue["id"];
+								$duration = $jsonArrayValue["runtime"];
+								$year = $jsonArrayValue["release_date"];
+								$poster = '//image.tmdb.org/t/p/original' . $jsonArrayValue["poster_path"];
+
+								$country = $jsonArrayValue["production_countries"][0]["name"];
+
+								$genres1 = isset($genres[0]) ? $genres[0]['name'] : '';
+								$genres2 = isset($genres[1]) ? $genres[1]['name'] : '';
+
+								$year = substr($year, 0, strpos($year, "-"));
+							?>
+								var container = document.getElementById('movie-container');
+								var newElement = document.createElement('div');
+								newElement.className = 'col-6 col-sm-4 col-md-3 col-xl-2';
+								newElement.title = '<?php echo $title; ?> (<?php echo $year; ?>)';
+								newElement.innerHTML = '<div class="card">' +
+									'<div class="card__cover">' +
+									'<img src="<?php echo $poster; ?>" alt="Watch <?php echo $title; ?>" onerror="this.src=\'<?php echo $root_directory ?>/img/noposter.jpg\';">' +
+									'<a href="<?php echo $root_directory ?>/watch.php?id=<?php echo $imdbid; ?>" class="card__play">' +
+									'<i class="icon ion-ios-play"></i>' +
+									'</a>' +
+									'<span class="card__rate card__rate--green"><?php echo $rating; ?></span>' +
+									'</div>' +
+									'<div class="card__content">' +
+									'<h3 class="card__title">' +
+									'<a href="<?php echo $root_directory ?>/watch.php?id=<?php echo $imdbid; ?>"><?php echo $title; ?></a>' +
+									'</h3>' +
+									'<span class="card__category"><?php echo implode('', array_map(function ($genre) {
+																		return '<a>' . $genre['name'] . '</a>';
+																	}, $genres)); ?></span>' +
+									'</div>' +
+									'</div>';
+								container.appendChild(newElement);
+								console.log(`<?php echo "<pre>";
+												print_r($displayedMovies);
+												echo in_array($imdbid, $displayedMovies); ?>`);
+							<?php
+							}
+							?>
+
+
+							loading = false;
+							page++;
+						}, 1000);
+					}
+				</script>
+ -->
 
 			</div>
 		</div>

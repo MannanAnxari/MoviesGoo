@@ -68,6 +68,7 @@ $(document).ready(function () {
 		smartSpeed: 700,
 		margin: 0,
 		items: 1,
+		autoplayHoverPause:true,
 		responsive: {
 			0: {
 				items: 1,

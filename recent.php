@@ -5,6 +5,8 @@ include_once 'files/datafile.php';
 $json = file_get_contents($datafile);		
 $data = json_decode($json, true);
 $loop = $data[0]['data'];
+$allMoviesData = json_decode(file_get_contents($dataFileMovies), true);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,8 +68,22 @@ $loop = $data[0]['data'];
 				$year = $jsonArrayValue['year'];
 				$imdbid = basename($imdbid);
 				if(empty($rating)) $rating = '0';
-				$json = file_get_contents('http://api.themoviedb.org/3/movie/'.$imdbid.'?api_key='.$apikey);	
-				$obj = json_decode($json, true);
+				// $json = file_get_contents('http://api.themoviedb.org/3/movie/'.$imdbid.'?api_key='.$apikey);	
+				// $obj = json_decode($json, true);
+				$obj = [];
+
+				$matches = array_filter($allMoviesData, function ($item) use ($imdbid) {
+					return basename($item['imdb_id']) === $imdbid;
+				});
+
+				if (!empty($matches)) {
+					$obj = reset($matches);
+				}
+				
+				// echo "<pre>";
+				// print_r($obj);
+				// die();
+
 				$tmdbid = $obj["id"];
 				$duration = $obj["runtime"];
 				$genres = $obj["genres"];
@@ -88,10 +104,14 @@ $loop = $data[0]['data'];
 						<a href="./watch.php?slug=<?php echo $slug; ?>" class="card__play">
 							<i class="icon ion-ios-play"></i>
 						</a>
-						<span class="card__rate card__rate--green"><?php echo $rating;?></span>
-					</div>
+						<div class="new-badges">
+											<?php if ($rating) { ?>
+												<span class="card__rate card__rate--green"><?php echo $rating; ?> &nbsp; <i class="icon ion-ios-star"></i></span>
+											<?php } ?>
+											<span class="card__rate card__rate--green"><?php echo $year; ?></span>
+										</div>	</div>
 					<div class="card__content">
-						<h3 class="card__title"><a href="./watch.php?id=<?php echo $imdbid;?>"><?php echo $title;?></a></h3>
+						<h3 class="card__title"><a href="./watch.php?slug=<?php echo $slug;?>"><?php echo $title;?></a></h3>
 						<span class="card__category">
 							<a><?php echo $genres1;?></a>
 							<a><?php echo $genres2;?></a>

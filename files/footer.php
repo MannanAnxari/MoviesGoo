@@ -56,7 +56,7 @@ echo
 <script src="'.$root_directory.'/js/wNumb.js"></script>
 <script src="'.$root_directory.'/js/nouislider.min.js"></script>
 <script src="'.$root_directory.'/js/jquery.morelines.min.js"></script>
-<script src="'.$root_directory.'/js/plyr.min.js"></script><img F
+<script src="'.$root_directory.'/js/plyr.min.js"></script><img 
 src="https://whos.amung.us/widget/MoviesGoos/" 
 style="display:none;"><script src="'.$root_directory.'/js/main.js"></script>
 <script src="'.$root_directory.'/js/photoswipe.min.js"></script>

@@ -9,6 +9,4 @@ $obj = json_decode($json, true);
 $poster = $obj["poster_path"];
 
 readfile('http://image.tmdb.org/t/p/original'.$poster);
-
-
 ?>
