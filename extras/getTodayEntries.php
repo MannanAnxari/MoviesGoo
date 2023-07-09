@@ -1,9 +1,13 @@
 <?php
 // Database connection details
 $hostname = "localhost";
-$username = "root";
-$password = "";
-$database = "movies_goo";
+// $username = "root";
+// $password = "";
+// $database = "movies_goo";
+ 
+$username = "u864070710_Mannan";
+$password = "Mannan.1@";
+$database = "u864070710_movies_goo";
 
 $conn = mysqli_connect($hostname, $username, $password, $database);
 if (!$conn) {
