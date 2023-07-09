@@ -45,7 +45,7 @@ if (!$imdbExists) {
         array_splice($allMoviesData, $insertIndex, 0, [$data]);
     }
 } else {
-    $responseData = ['success' => false, 'message' => 'Sale! Movie Already Exists!'];
+    $responseData = ['success' => false, 'message' => 'Sale! Movie Pehle Se Hai Hmare Pas! 🥹'];
     echo json_encode($responseData);
     exit;
 }
