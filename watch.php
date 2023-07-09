@@ -107,7 +107,7 @@ $desc = implode(' ', array_slice(str_word_count($plot,1), 0, 20));
 										$rating = $jsonArrayValue['rating'];
 										if(empty($rating)) $rating = '0';
 							?>									
-							<span class="card__rate card__rate--green">asd<?php echo $rating;?></span>
+							<span class="card__rate card__rate--green"><?php echo $rating;?></span>
 							<?php }} ?>
 						</div>
 					</div>
