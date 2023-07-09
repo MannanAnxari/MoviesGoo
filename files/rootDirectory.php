@@ -1,3 +1,3 @@
 <?php
-$root_directory = '';
-// $root_directory = '/filmm';
+// $root_directory = '';
+$root_directory = '/filmm';

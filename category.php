@@ -93,6 +93,7 @@ $loop = $data[0]['data'];
 					$title = $jsonArrayValue['title'];
 					$imdbid = $jsonArrayValue['imdb_id'];
 					$rating;
+					$slug;
 					$language = $jsonArrayValue['language'];
 					$year = $jsonArrayValue['year'];
 
@@ -102,6 +103,7 @@ $loop = $data[0]['data'];
 
 					if (!empty($matches)) {
 						$rating = reset($matches)['rating'];
+						$slug = reset($matches)['slug']; 
 					}
 
 					$imdbid = basename($imdbid);
