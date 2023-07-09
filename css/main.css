@@ -5171,7 +5171,9 @@ textarea.primary {
 #todayEntries {
   font-weight: 800;
 }
-
+.addMovies {
+  padding-inline: 20px;
+}
 @media screen and (max-width: 768px) {
   .addMovies {
     flex-direction: column;
