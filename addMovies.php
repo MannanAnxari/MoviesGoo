@@ -2,6 +2,7 @@
 include_once 'files/apikey.php';
 include_once 'files/datafile.php';
 include_once 'files/rootDirectory.php';
+
 ?>
 
 <link rel="stylesheet" href="<?php echo $root_directory ?>/css/main.css">

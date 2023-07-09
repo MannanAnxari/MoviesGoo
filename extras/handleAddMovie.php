@@ -3,7 +3,6 @@ include_once '../files/apikey.php';
 include_once '../files/datafile.php';
 include_once '../files/rootDirectory.php';
 
-
 $jsonData = file_get_contents('php://input');
 
 if ($jsonData === false) {
