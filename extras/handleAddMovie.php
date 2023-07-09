@@ -1,4 +1,7 @@
 <?php
+
+ini_set('memory_limit', '1G');
+
 include_once '../files/apikey.php';
 include_once '../files/datafile.php';
 include_once '../files/rootDirectory.php';
@@ -10,8 +13,8 @@ if ($jsonData === false) {
     echo "Error: Unable to retrieve JSON data";
     exit;
 }
-$data = json_decode($jsonData, true);
 
+$data = json_decode($jsonData, true);
 
 if ($data === null) {
     http_response_code(400); // Bad Request
