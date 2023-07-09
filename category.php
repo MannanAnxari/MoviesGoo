@@ -30,6 +30,8 @@ $loop = $data[0]['data'];
 	<link rel="stylesheet" href="<?php echo $root_directory ?>/css/photoswipe.css">
 	<link rel="stylesheet" href="<?php echo $root_directory ?>/css/default-skin.css">
 	<link rel="stylesheet" href="<?php echo $root_directory ?>/css/main.css">
+	<link rel="shortcut icon" type="image/png" href="<?php echo $root_directory?>/icon/favicon-32x32.png"/>
+
 </head>
 
 <body class="body">

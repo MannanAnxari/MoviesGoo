@@ -1,4 +1,5 @@
 <?php
+include_once 'files/rootDirectory.php';
 include_once 'files/apikey.php';
 ?>
 
@@ -20,6 +21,7 @@ include_once 'files/apikey.php';
     <link rel="stylesheet" href="./css/plyr.css">
     <link rel="stylesheet" href="./css/photoswipe.css">
     <link rel="stylesheet" href="./css/default-skin.css">
+	<link rel="shortcut icon" type="image/png" href="<?php echo $root_directory?>/icon/favicon-32x32.png"/>
     <link rel="stylesheet" href="./css/main.css">
 </head>
 

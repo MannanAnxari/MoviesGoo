@@ -4,7 +4,6 @@ include_once 'files/categories.php';
 ?>
 
 <head>
-	<link rel="shortcut icon" type="image/png" href="<?php echo $root_directory?>/icon/favicon-32x32.png"/>
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-0T4EYQNQPY"></script>
 	<script>

@@ -1,6 +1,7 @@
 <?php
 include_once 'files/apikey.php';
 include_once 'files/datafile.php';
+include_once 'files/rootDirectory.php';
 $json = file_get_contents($datafile);
 
 // die();
@@ -24,6 +25,7 @@ $loop = $data[0]['data'];
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./css/bootstrap-reboot.min.css">
 	<link rel="stylesheet" href="./css/bootstrap-grid.min.css">
+	<link rel="shortcut icon" type="image/png" href="<?php echo $root_directory?>/icon/favicon-32x32.png"/>
 	<link rel="stylesheet" href="./css/owl.carousel.min.css">
 	<link rel="stylesheet" href="./css/jquery.mCustomScrollbar.min.css">
 	<link rel="stylesheet" href="./css/nouislider.min.css">
