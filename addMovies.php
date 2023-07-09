@@ -13,7 +13,7 @@ include_once 'files/rootDirectory.php';
             Today Entries: <span id="todayEntries">0</span>
         </div>
         <div class="row">
-            <div class="col-lg-6 col-md-6 mx-auto vh-100 d-flex align-items-center gap-2">
+            <div class="col-lg-6 col-md-6 mx-auto vh-100 d-flex align-items-center gap-2 addMovies">
                 <input type="text" class="primary" id="movieIds" placeholder="e.g. tt123456789">
                 <button class="btn-main btn" id="addMovieBtn" onclick="addMovie()">Add Movie</button>
             </div>
