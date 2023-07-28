@@ -19,7 +19,7 @@ $loop = $data[0]['data'];
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Category Results - MoviesGoo</title>
+	<title>Category Results - <?php echo ucwords($key);?> - MoviesGoo</title>
 	<link rel="stylesheet" href="<?php echo $root_directory ?>/css/bootstrap-reboot.min.css">
 	<link rel="stylesheet" href="<?php echo $root_directory ?>/css/bootstrap-grid.min.css">
 	<link rel="stylesheet" href="<?php echo $root_directory ?>/css/owl.carousel.min.css">
@@ -44,9 +44,7 @@ $loop = $data[0]['data'];
 
 	<meta name="description" content="Watch the latest <?php echo $key; ?> movies online for free on MoviesGoo. Enjoy a vast collection of <?php echo $key; ?> films from various genres.">
     <meta name="keywords" content="<?php echo $key; ?> movies, watch <?php echo $key; ?> movies, <?php echo $key; ?> animated films, <?php echo $key; ?> movies online, stream <?php echo $key; ?> movies">
- 
-	<title>Search Result - <?php echo ucwords($key);?> - MoviesGoo</title>
-
+  
 </head>
 
 <body class="body">
