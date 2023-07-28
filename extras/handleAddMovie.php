@@ -22,7 +22,6 @@ if ($data === null) {
     exit;
 }
 
-
 $allMovies = file_get_contents("./../data.json");
 $allMoviesData = json_decode($allMovies, true)[0]['data'];
 $imdb = basename($data["imdb"]);

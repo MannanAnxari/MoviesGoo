@@ -49,7 +49,7 @@ if (strlen($wordcount) > 35) {
 	$words20 = $wordcount.'...';
 }
 
-$desc = implode(' ', array_slice(str_word_count($plot,1), 0, 20));
+$desc = implode(' ', array_slice(str_word_count($plot,1), 0, 20)); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +57,7 @@ $desc = implode(' ', array_slice(str_word_count($plot,1), 0, 20));
 <meta name="robots" content="index, follow">
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title><?php echo implode($wtitle);?> – MoviesGoo Movie Script by 2Embed.cc</title>
+<title><?php echo implode($wtitle);?> – MoviesGoo</title>
 <meta name="description" content="Watch <?php echo $title;?> Online, <?php echo $desc;?>">
 <link rel="stylesheet" href="./css/bootstrap-reboot.min.css">
 <link rel="stylesheet" href="./css/bootstrap-grid.min.css">
@@ -70,6 +70,10 @@ $desc = implode(' ', array_slice(str_word_count($plot,1), 0, 20));
 <link rel="stylesheet" href="./css/photoswipe.css">
 <link rel="stylesheet" href="./css/default-skin.css">
 <link rel="stylesheet" href="./css/main.css">
+
+<meta name="description" content="<?php echo $plot; ?>">
+<meta name="keywords" content="<?php echo $title; ?>, <?php echo $genres1; ?>, <?php echo $genres2; ?>, <?php echo $country; ?>, animated movie, <?php echo $slug; ?>">
+ 
 <style>
 .pswp__caption__center {
 	text-align: center;

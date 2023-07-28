@@ -28,6 +28,21 @@ $allMoviesData = json_decode(file_get_contents($dataFileMovies), true);
 <link rel="stylesheet" href="./css/photoswipe.css">
 <link rel="stylesheet" href="./css/default-skin.css">
 <link rel="stylesheet" href="./css/main.css">
+
+
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="MoviesGoo - Stream Animated Movies Online">
+<meta property="og:description" content="Watch the latest animated movies online for free on MoviesGoo. Enjoy a vast collection of animated films from various genres.">
+<meta property="og:image" content="<?php echo $root_directory; ?>/img/home/logo.png">
+<meta property="og:url" content="https://www.moviesgoo.com">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MoviesGoo">
+
+<meta name="description" content="Watch the latest animated movies online for free on MoviesGoo. Enjoy a vast collection of animated films from various genres.">
+<meta name="keywords" content="watch online, new movies 2023, animated movies 2023, new animated movies 2023, animated movies, animated films, stream animated movies, watch cartoons, watch animated movies online, free animated movies">
+<meta name="author" content="MoviesGoo">
+<title>MoviesGoo – Stream Full HD Movies</title>
+
 </head>
 <body class="body">
 <?php include 'files/header.php';

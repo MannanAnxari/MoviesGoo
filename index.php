@@ -21,7 +21,8 @@ $loop = $data[0]['data'];
 	<meta name="robots" content="index, follow">
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>MoviesGoo – Stream Full HD Movies</title>
+
+
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./css/bootstrap-reboot.min.css">
 	<link rel="stylesheet" href="./css/bootstrap-grid.min.css">
@@ -34,6 +35,26 @@ $loop = $data[0]['data'];
 	<link rel="stylesheet" href="./css/photoswipe.css">
 	<link rel="stylesheet" href="./css/default-skin.css">
 	<link rel="stylesheet" href="./css/main.css">
+
+
+	
+
+	<meta name="robots" content="index, follow">
+	<meta property="og:title" content="MoviesGoo - Stream Animated Movies Online">
+	<meta property="og:description" content="Watch the latest animated movies online for free on MoviesGoo. Enjoy a vast collection of animated films from various genres.">
+	<meta property="og:image" content="<?php echo $root_directory; ?>/img/home/logo.png">
+	<meta property="og:url" content="https://www.moviesgoo.com">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="MoviesGoo">
+
+
+	<meta name="description" content="Watch the latest animated movies online for free on MoviesGoo. Enjoy a vast collection of animated films from various genres.">
+	<meta name="keywords" content="animated movies, animated films, stream animated movies, watch cartoons, watch animated movies online, free animated movies">
+	<meta name="author" content="MoviesGoo">
+	<title>MoviesGoo – Stream Full HD Movies</title>
+	
+
+
 </head>
 
 

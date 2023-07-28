@@ -17,8 +17,7 @@ $loop = $data[0]['data'];
 
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Search Results - MoviesGoo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
 	<link rel="stylesheet" href="./css/bootstrap-reboot.min.css">
 	<link rel="stylesheet" href="./css/bootstrap-grid.min.css">
 	<link rel="stylesheet" href="./css/owl.carousel.min.css">
@@ -30,6 +29,24 @@ $loop = $data[0]['data'];
 	<link rel="stylesheet" href="./css/photoswipe.css">
 	<link rel="stylesheet" href="./css/default-skin.css">
 	<link rel="stylesheet" href="./css/main.css">
+
+
+
+	<meta name="robots" content="index, follow">
+	<meta property="og:title" content="MoviesGoo - Stream Animated Movies Online">
+	<meta property="og:description" content="Watch the latest animated movies online for free on MoviesGoo. Enjoy a vast collection of animated films from various genres. Find <?php echo $key;?> and more.">
+	<meta property="og:image" content="<?php echo $root_directory; ?>/img/home/logo.png">
+	<meta property="og:url" content="https://www.moviesgoo.com">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="MoviesGoo">
+
+ 
+	<meta name="description" content="Watch the latest animated movies online for free on MoviesGoo. Enjoy a vast collection of animated films from various genres. Find <?php echo $key;?> and more.">
+	<meta name="keywords" content="watch <?php echo $key;?>, watch online, new movies 2023, animated movies 2023, new animated movies 2023, animated movies, animated films, stream animated movies, watch cartoons, watch animated movies online, free animated movies">
+	<meta name="author" content="MoviesGoo">
+	<title>Search Result - <?php echo ucwords($key);?> - MoviesGoo</title>
+
+
 </head>
 
 <body class="body">
@@ -41,7 +58,7 @@ $loop = $data[0]['data'];
 				<div class="col-12">
 					<div class="section__wrap">
 						<!-- section title -->
-						<h2 class="section__title">Search Results for &raquo; <?php echo $key; ?></h2>
+						<h2 class="section__title">Search Results for &raquo; <?php echo ucwords($key); ?></h2>
 						<!-- end section title -->
 					</div>
 				</div>
